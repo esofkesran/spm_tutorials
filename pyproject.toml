@@ -1,0 +1,86 @@
+[tool.ruff]
+# Max line length. 79 is the PEP 8 limit (Ruff default is 88)
+line-length = 79
+
+# Targeted Python version
+target-version = "py314"
+
+# Extra folders to skip (Ruff already skips .venv, .git, __pycache__, etc.)
+extend-exclude = ["migrations", "build"]
+
+# Also apply the exclusions when an editor or pre-commit passes the file directly
+force-exclude = true
+
+
+[tool.ruff.lint]
+# Allow rules that are still in preview
+preview = true
+
+# Only turn on the preview rules I list below (not all of them)
+explicit-preview-rules = true
+
+# Rule families to enable
+select = [
+    "E",   # pycodestyle errors (PEP 8)
+    "W",   # pycodestyle warnings (PEP 8)
+    "F",   # pyflakes (unused imports, undefined names...)
+    "N",   # pep8-naming (naming conventions)
+    "D",   # pydocstyle (docstrings)
+    "I",   # isort (import order)
+    "UP",  # pyupgrade (modern Python syntax)
+    "B",   # bugbear (likely bugs)
+    "C90", # mccabe (code complexity)
+
+    # blank lines rules (preview)
+    "E301",  # expected 1 blank line
+    "E302",  # expected 2 blank lines
+    "E303",  # too many blank lines
+    "E304",  # blank line after decorator
+    "E305",  # expected 2 blank lines after function/class
+    "E306",  # expected 1 blank line before nested definition
+    "W391",  # too many blank lines at end of file
+]
+
+# # Rules to turn off because they are too noisy or clash with the formatter
+# ignore = [
+#     "D100",  # missing docstring in public module
+#     "D104",  # missing docstring in public package
+#     "D107",  # missing docstring in __init__
+#     "W191",  # tab indentation, conflicts with the formatter
+# ]
+
+# Let "ruff check --fix" fix all the rules that can be fixed automatically
+fixable = ["ALL"]
+
+
+[tool.ruff.lint.pydocstyle]
+# Docstring style to follow (google, numpy or pep257)
+convention = "google"
+
+
+[tool.ruff.lint.mccabe]
+# Max complexity allowed per function (default is 10)
+max-complexity = 10
+
+
+[tool.ruff.lint.isort]
+# Number of blank lines after the imports
+lines-after-imports = 2
+
+
+[tool.ruff.lint.per-file-ignores]
+# Tests don't really need docstrings everywhere
+"tests/*" = ["D"]
+# __init__.py files often have "unused" imports on purpose (re-exports)
+"__init__.py" = ["F401"]
+
+
+[tool.ruff.format]
+# Quote style used by "ruff format"
+quote-style = "double"
+
+# Indent with spaces (not tabs)
+indent-style = "space"
+
+# Line endings: auto = keep whatever the file already uses
+line-ending = "auto"
