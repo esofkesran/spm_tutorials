@@ -50,3 +50,43 @@ def count_sequences(alphabet_size: int, max_depth: int) -> int:
     for value in range(1, max_depth + 1):
         result += alphabet_size**value
     return result
+
+
+def compter(
+        m: int,
+        d: int,
+        seq: list[int]|None=None,
+        current_depth: int=1
+    ) -> int:
+    """Counts the sequences without storing them."""
+    if seq is None:
+        seq = []
+    count = 0
+    if current_depth > d:
+        return 0
+    for item in range(1, m + 1):
+        new_sequence = seq + [item]
+        count += compter(m, d, new_sequence, current_depth + 1)
+        count += 1
+    return count
+
+
+def generer(
+        m: int,
+        d: int,
+        seq: list[int]|None=None,
+        current_depth: int=1,
+        results: list[list[int]]|None=None
+    ) -> list[list[int]]:
+    """Generates the sequences and stores them in a list."""
+    if seq is None:
+        seq = []
+    if results is None:
+        results = []
+    if current_depth > d:
+        return results
+    for item in range(1, m + 1):
+        new_sequence = seq + [item]
+        results.append(new_sequence)
+        generer(m, d, new_sequence, current_depth + 1, results)
+    return results

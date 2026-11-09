@@ -48,8 +48,28 @@ def run_count_sequences() -> None:
     print(f"{n_m_d_1} / {n_m_d} = {n_m_d_1 / n_m_d}")
 
 
+def run_compter() -> None:
+    m = 4
+    d = 8
+    n_m_d = lib.compter(m, d)
+    print(f"N({m}, {d}) = {n_m_d}")
+
+
+def run_generer() -> None:
+    m = 3
+    d = 11
+    results_m_d = lib.generer(m, d)
+    # print(results_m_d)
+    # for item in results_m_d:
+    #     print(item)
+    n_m_d = len(results_m_d)
+    print(f"N({m}, {d}) = {n_m_d}")
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
     # run_dfs_borne()
-    run_count_sequences()
+    # run_count_sequences()
+    # run_compter()
+    # run_generer()
