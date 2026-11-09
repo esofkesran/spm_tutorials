@@ -18,3 +18,32 @@ Implémentation faite. Exécution faite avec `d_max = 2` et `d_max = 3`.
 
 ### Étape 5.
 Fait.
+
+
+# Partie B — Combien de possibilités ? Théorie et pratique
+
+### Étape 1.
+- Il y a `m^k` séquences de longueur `k`. Cela est dû au fait que à chaque fois
+qu'on veut passer des séquences de longueur `l` à des séquences de longueur
+`l + 1`, on combine chacune des séquences avec chacun des éléments de
+l'alphabet. Par conséquent le nombre de séquences avec une longueur `l + 1` est
+`m` fois le nombre de séquences avec une longueur `l`.
+- `N(m, d) = somme de l=1 à l=d de m^l`
+- `N(3, 2) = 12`, `N(3, 3) = 39`, `N(3, 10) = 88572`.
+- Quand `d` devient grand, le rapport `N(m, d+1) / N(m, d)` tend vers la valeur
+de `m`. Cela implique que, lorsque l’on augmente la profondeur de `1`, le temps est multiplié par `m` environ.
+
+### Étape 2.
+Implémentation faite. Vérification faite.
+
+### Étape 3.
+Fait.
+
+### Étape 4.
+Les courbes sont presque linéaires.
+
+### Étape 5.
+- Le temps est presque proportionnelle au nombre de séquence, surtout quand le 
+nombre de séquence devient élevé.
+- De manière générale, le temps d'exécution de la fonction `generer` est
+légèrement supérieur à celui de la fonction `compter`.
