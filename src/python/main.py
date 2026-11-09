@@ -1,5 +1,6 @@
 """Main module that executes the implemented functions."""
 import lib
+import pandas as pd
 
 
 def run_dfs_naif() -> None:
@@ -66,6 +67,31 @@ def run_generer() -> None:
     print(f"N({m}, {d}) = {n_m_d}")
 
 
+def run_comparison_compter_vs_generer() -> None:
+    m_d_values = {
+        2: 20,
+        3: 14,
+        4: 11
+    }
+    comparison_list = lib.performance_compter_vs_generer(
+        m_d_values,
+        repetition_count=3
+    )
+    comparison_df = pd.DataFrame(comparison_list)
+    comparison_df.to_csv(
+        "outputs/compter_vs_generer.csv",
+        index=False
+    )
+    lib.show_perf_compter_vs_generer(
+        "execution_time",
+        comparison_list=comparison_list
+    )
+    lib.show_perf_compter_vs_generer(
+        "sequence_count",
+        comparison_list=comparison_list
+    )
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -73,3 +99,4 @@ if __name__ == "__main__":
     # run_count_sequences()
     # run_compter()
     # run_generer()
+    run_comparison_compter_vs_generer()

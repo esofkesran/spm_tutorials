@@ -1,1 +1,3 @@
 ruff
+pandas
+matplotlib

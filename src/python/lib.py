@@ -1,4 +1,12 @@
 """Module that contains the implemented algorithms and utility functions."""
+import time
+from typing import Literal
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+
+PAUSE_BETWEEN_MEASUREMENTS = 5
 
 
 def dfs_naif(seq: list[str], alphabet: list[str]) -> list[list[str]]:
@@ -90,3 +98,143 @@ def generer(
         results.append(new_sequence)
         generer(m, d, new_sequence, current_depth + 1, results)
     return results
+
+
+def get_performance(
+        m: int,
+        d: int,
+        type: Literal["compter", "generer"],
+        repetition_count: int=3
+    ) -> dict[str, int|float]:
+    total_duration = 0
+    result = 0
+
+    for count in range(repetition_count):
+        time.sleep(PAUSE_BETWEEN_MEASUREMENTS)
+
+        start_time = time.perf_counter()
+
+        if type == "compter":
+            result = compter(m, d)
+        else:
+            result = len(generer(m, d))
+
+        end_time = time.perf_counter()
+        total_duration += end_time - start_time
+
+    mean_duration = total_duration / repetition_count
+
+    return {
+        "m": m,
+        "d": d,
+        "sequence_count": result,
+        "execution_time": mean_duration
+    }
+
+
+def performance_compter_vs_generer(
+        m_d_values: dict[int, int],
+        repetition_count: int=3
+    ) -> list[dict[str, int|float]]:
+    result = []
+
+    for m, max_d in m_d_values.items():
+        print(f"\nMesures pour m = {m}")
+
+        for d in range(1, max_d + 1):
+            print(f"  Mesures pour d = {d}/{max_d}")
+
+            print("    Exécution de compter...")
+            compter_performance = get_performance(
+                m,
+                d,
+                "compter",
+                repetition_count
+            )
+
+            print("    Exécution de generer...")
+            generer_performance = get_performance(
+                m,
+                d,
+                "generer",
+                repetition_count
+            )
+
+            comparison_line = {
+                "m": m,
+                "d": d,
+                "compter_sequence_count": compter_performance["sequence_count"],
+                "compter_execution_time": compter_performance["execution_time"],
+                "generer_sequence_count": generer_performance["sequence_count"],
+                "generer_execution_time": generer_performance["execution_time"]
+            }
+
+            result.append(comparison_line)
+
+            print(
+                f"    Terminé : "
+                f"compter = {compter_performance['execution_time']:.6f}s, "
+                f"generer = {generer_performance['execution_time']:.6f}s"
+            )
+
+    print("\nToutes les mesures sont terminées.")
+
+    return result
+
+
+def show_perf_compter_vs_generer(
+        parameter: Literal["sequence_count", "execution_time"],
+        comparison_list: list[dict[str, int|float]]|None=None,
+        comparison_csv_path: str|None=None
+    ) -> None:
+    if comparison_list is None and comparison_csv_path is None:
+        raise ValueError(
+            "At least one of the parameters 'comparison_list' and "
+            "'comparison_csv_path' must be specified."
+        )
+
+    if comparison_csv_path is not None:
+        comparison_df = pd.read_csv(comparison_csv_path)
+    else:
+        comparison_df = pd.DataFrame(comparison_list)
+
+    plt.figure(figsize=(8, 6), dpi=300)
+    plt.semilogy()
+
+    for m in sorted(comparison_df["m"].unique()):
+        m_df = comparison_df[comparison_df["m"] == m]
+
+        xdata = m_df["d"]
+
+        y1data = m_df[f"compter_{parameter}"]
+        y2data = m_df[f"generer_{parameter}"]
+
+        plt.plot(
+            xdata,
+            y1data,
+            marker="o",
+            label=f"Compter (m={m})"
+        )
+
+        plt.plot(
+            xdata,
+            y2data,
+            marker="s",
+            linestyle="--",
+            label=f"Generer (m={m})"
+        )
+
+    xlabel = "Maximum sequence depth (d)"
+    plt.xlabel(xlabel)
+
+    ylabel = ("Number of sequences"
+              if parameter == "sequence_count"
+              else "Execution time")
+    plt.ylabel(ylabel)
+
+    plt.title(f"Compter vs Generer - {ylabel}")
+    plt.legend()
+    plt.grid()
+
+    plt.savefig(f"outputs/compter_vs_generer_{parameter}.png")
+    plt.show()
