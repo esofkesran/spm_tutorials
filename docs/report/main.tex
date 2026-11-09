@@ -29,4 +29,41 @@
 \addcontentsline{toc}{section}{Espace de recherche}
 Lors de l'application du DFS, on accorde de l'importance à l'ordre d'apparition des éléments de l'alphabet. C'est pour cette raison que les objets énumérés sont des séquences (l’espace de recherche est un espace de séquences). De plus, on autorise la répétition des éléments, raison pour laquelle le nombre d'objets énumérés est infini et le programme ne termine pas (jusqu'à l'arrêt forcé causé par l'exception $RecursionError$).
 
+\section*{Formule de N(m, d)}
+\addcontentsline{toc}{section}{Formule de N(m, d)}
+Soit $m$ la longueur de l'alphabet. Soit $d$, $k$ et $l$ des longueurs de séquences. Soit $N_{k}$ le nombre de séquences de longueur égale à $k$. Soit $N(m, d)$, le nombre total de séquences non vides de longueur au plus $d$. Nous avons les formules suivantes :
+
+$$N_{k} = m^{k}$$
+$$N(m, d) = \sum_{l=1}^{d} m^{l}$$
+
+Ces formules sont confirmées par les résultats expérimentaux comme on peut le voir sur les figures \ref{fig:compter-vs-generer-sequence-count} et \ref{fig:compter-vs-generer-execution-time}.
+
+
+\newpage
+
+
+\section*{Comparaison entre les fonctions $compter$ et $generer$}
+\addcontentsline{toc}{section}{Comparaison entre les fonctions $compter$ et $generer$}
+
+\begin{minipage}[c]{0.45\textwidth}
+	\centering
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/compter-vs-generer-sequence-count.png}
+		\caption{Comparaison du nombre de séquences générées}
+		\label{fig:compter-vs-generer-sequence-count}
+	\end{figure}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.45\textwidth}
+	\centering
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/compter-vs-generer-execution-time.png}
+		\caption{Comparaison du temps d'exécution (en seconde)}
+		\label{fig:compter-vs-generer-execution-time}
+	\end{figure}
+\end{minipage}
+
+
 \end{document}
