@@ -42,3 +42,11 @@ def dfs_borne(
         results.append(new_sequence)
         dfs_borne(new_sequence, alphabet, d_max, depth + 1, results)
     return results
+
+
+def count_sequences(alphabet_size: int, max_depth: int) -> int:
+    """Counts the number of non-empty sequences of length at most max_depth."""
+    result = 0
+    for value in range(1, max_depth + 1):
+        result += alphabet_size**value
+    return result
