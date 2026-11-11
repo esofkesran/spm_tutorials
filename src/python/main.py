@@ -117,6 +117,22 @@ def run_support() -> None:
         print(f"support( {pattern} ) = {lib.support(pattern, db)}")
 
 
+def run_prefixes() -> None:
+    s = ["a", "b", "c", "a", "c"]
+
+    prefixes = lib.prefixes(s)
+    for prefixe in prefixes:
+        print(prefixe)
+
+
+def run_suffixes() -> None:
+    s = ["a", "b", "c", "a", "c"]
+
+    suffixes = lib.suffixes(s)
+    for suffixe in suffixes:
+        print(suffixe)
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -126,4 +142,6 @@ if __name__ == "__main__":
     # run_generer()
     # run_comparison_compter_vs_generer()
     # run_find_embedding()
-    run_support()
+    # run_support()
+    # run_prefixes()
+    run_suffixes()

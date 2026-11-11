@@ -267,3 +267,13 @@ def support(t: list[str], db: list[list[str]]) -> int:
         if find_embedding(t, sequence) is not None:
             count += 1
     return count
+
+
+def prefixes(s: list[str]) -> list[list[str]]:
+    """Generates all possible prefixes of a sequence."""
+    return [s[:ind] for ind in range(len(s) + 1)]
+
+
+def suffixes(s: list[str]) -> list[list[str]]:
+    """Generates all possible suffixes of a sequence."""
+    return [s[ind:] for ind in range(len(s) + 1)]
