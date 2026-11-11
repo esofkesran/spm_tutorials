@@ -258,3 +258,12 @@ def find_embedding(t: list[str], s: list[str]) -> list[int]|None:
             return None
 
     return embedding
+
+
+def support(t: list[str], db: list[list[str]]) -> int:
+    """Calculates the support of t in db."""
+    count = 0
+    for sequence in db:
+        if find_embedding(t, sequence) is not None:
+            count += 1
+    return count

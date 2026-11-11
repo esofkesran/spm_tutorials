@@ -100,6 +100,23 @@ def run_find_embedding() -> None:
     print(lib.find_embedding(["c", "b"], s))
 
 
+def run_support() -> None:
+    patterns = [
+        ["a"],
+        ["b"],
+        ["d"],
+        ["a", "b"],
+        ["b", "a"],
+        ["c", "a"],
+        ["a", "b", "c"],
+        ["a", "a"]
+    ]
+    db = [list("abcac"), list("acbc"), list("babc"), list("abd"), list("cba")]
+
+    for pattern in patterns:
+        print(f"support( {pattern} ) = {lib.support(pattern, db)}")
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -108,4 +125,5 @@ if __name__ == "__main__":
     # run_compter()
     # run_generer()
     # run_comparison_compter_vs_generer()
-    run_find_embedding()
+    # run_find_embedding()
+    run_support()
