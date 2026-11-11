@@ -277,3 +277,12 @@ def prefixes(s: list[str]) -> list[list[str]]:
 def suffixes(s: list[str]) -> list[list[str]]:
     """Generates all possible suffixes of a sequence."""
     return [s[ind:] for ind in range(len(s) + 1)]
+
+
+def project_seq(s: list[str], alpha: list[str]) -> list[str]|None:
+    """Determines the projection of s relative to alpha."""
+    embedding = find_embedding(alpha, s)
+    if embedding is None:
+        return None
+    last_index = embedding[-1]
+    return s[last_index + 1:]

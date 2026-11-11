@@ -133,6 +133,15 @@ def run_suffixes() -> None:
         print(suffixe)
 
 
+def run_project_seq() -> None:
+    s = ["a", "b", "c", "a", "c"]
+
+    print(lib.project_seq(s, ["a"]))
+    print(lib.project_seq(s, ["a", "b"]))
+    print(lib.project_seq(s, ["a", "c"]))
+    print(lib.project_seq(s, ["c", "a"]))
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -144,4 +153,5 @@ if __name__ == "__main__":
     # run_find_embedding()
     # run_support()
     # run_prefixes()
-    run_suffixes()
+    # run_suffixes()
+    run_project_seq()
