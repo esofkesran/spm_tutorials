@@ -47,3 +47,66 @@ Les courbes sont presque linéaires.
 nombre de séquence devient élevé.
 - De manière générale, le temps d'exécution de la fonction `generer` est
 légèrement supérieur à celui de la fonction `compter`.
+
+
+# Partie C — Sous-séquences, plongements, support, préfixes et suffixes
+
+### Étape 1.
+- `ac` oui, `ca` oui, `cb` non, `aa` oui, `abc` oui.
+- Avec une sous-chaîne, il aurait été nécessaire de suivre l'ordre des éléments
+de manière contigue.
+
+### Étape 2.
+- Les plongements de `ac` dans `s` : (0, 2), (0, 4), (3, 4).
+- Les plongements de `abc` dans `s` : (0, 1, 2), (0, 1, 4).
+- ??
+
+### Étape 3.
+Implémentation faite.
+
+### Étape 4.
+Le plongement glouton choisit toujours la première occurrence possible de
+chaque élément. Par conséquent, son dernier indice est également le plus petit
+possible parmi tous les plongements.
+
+### Étape 5.
+Implémentation faite. Calcul fait. Vérification faite.
+
+```
+support( ['a'] ) = 5
+support( ['d'] ) = 1
+support( ['a', 'b'] ) = 4
+support( ['b', 'a'] ) = 3
+support( ['c', 'a'] ) = 2
+support( ['a', 'b', 'c'] ) = 3
+support( ['a', 'a'] ) = 1
+```
+
+### Étape 6.
+- `support(ab) = 4` et `support(abc) = 3`. Alors `support(ab) > support(abc)`.
+- `support(b) = 5` et `support(ba) = 3`. Donc `support(b) > support(ba)`.
+- De manière générale, pour `t ⊑ t′`, on a : `support(t) >= support(t′)`. C'est
+  la propriété d'anti-monotonie.
+- Si une séquence ne possède pas un support suffisant, aucune de ses extensions
+  ne pourra avoir un support suffisant non plus. On peut donc arrêter
+  l'exploration de cette branche du DFS (en quelque sorte la couper) sans
+  examiner toutes ses extensions.
+
+### Étape 7.
+`s = abcac`
+
+- **Préfixes** : Un préfixe contient les k premiers éléments de la séquence.
+  1. []
+  2. [a]
+  3. [a, b]
+  4. [a, b, c]
+  5. [a, b, c, a]
+  6. [a, b, c, a, c]
+- **Suffixes** : Un suffixe contient les éléments restants à partir d'une position donnée.
+  1. [a, b, c, a, c]
+  2. [b, c, a, c]
+  3. [c, a, c]
+  4. [a, c]
+  5. [c]
+  6. []
+- **Projections** : `s|a = bcac`, `s|ab = cac`, `s|ac = ac`, `s|ca = c`.
