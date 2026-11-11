@@ -238,3 +238,23 @@ def show_perf_compter_vs_generer(
 
     plt.savefig(f"outputs/compter_vs_generer_{parameter}.png")
     plt.show()
+
+
+def find_embedding(t: list[str], s: list[str]) -> list[int]|None:
+    """Returns the leftmost occurrence (list of indices) of t in s, or None."""
+    embedding = []
+    start_index = 0
+
+    for item in t:
+        found = False
+        for index in range(start_index, len(s)):
+            if s[index] == item:
+                embedding.append(index)
+                start_index = index + 1
+                found = True
+                break
+
+        if not found:
+            return None
+
+    return embedding

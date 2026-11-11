@@ -92,6 +92,14 @@ def run_comparison_compter_vs_generer() -> None:
     )
 
 
+def run_find_embedding() -> None:
+    s = ["a", "b", "c", "a", "c"]
+
+    print(lib.find_embedding(["a", "c"], s))
+    print(lib.find_embedding(["a", "b", "c"], s))
+    print(lib.find_embedding(["c", "b"], s))
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -99,4 +107,5 @@ if __name__ == "__main__":
     # run_count_sequences()
     # run_compter()
     # run_generer()
-    run_comparison_compter_vs_generer()
+    # run_comparison_compter_vs_generer()
+    run_find_embedding()
