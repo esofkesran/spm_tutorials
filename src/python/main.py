@@ -142,6 +142,17 @@ def run_project_seq() -> None:
     print(lib.project_seq(s, ["c", "a"]))
 
 
+def run_project() -> None:
+    db = [list("abcac"), list("acbc"), list("babc"), list("abd"), list("cba")]
+    alphabet = ["a", "b", "c", "d"]
+    for item in alphabet:
+        print(f"{item} : ", end="")
+        proj = lib.project(db, [item])
+        for sequence in proj:
+            print(f"({"".join(sequence)})", end=" ")
+        print()
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -154,4 +165,5 @@ if __name__ == "__main__":
     # run_support()
     # run_prefixes()
     # run_suffixes()
-    run_project_seq()
+    # run_project_seq()
+    run_project()

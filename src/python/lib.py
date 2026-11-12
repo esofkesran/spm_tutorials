@@ -286,3 +286,13 @@ def project_seq(s: list[str], alpha: list[str]) -> list[str]|None:
         return None
     last_index = embedding[-1]
     return s[last_index + 1:]
+
+
+def project(db: list[list[str]], alpha: list[str]) -> list[list[str]]:
+    """Returns the projected base DB|alpha."""
+    result = []
+    for sequence in db:
+        suffix = project_seq(sequence, alpha)
+        if suffix is not None:
+            result.append(suffix)
+    return result
