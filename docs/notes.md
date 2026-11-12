@@ -110,3 +110,43 @@ support( ['a', 'a'] ) = 1
   5. [c]
   6. []
 - **Projections** : `s|a = bcac`, `s|ab = cac`, `s|ac = ac`, `s|ca = c`.
+
+
+# Partie D — La base projetée, pas à pas
+
+### Étape 1.
+- `DB|a = {bcac, cbc, bc, bd, ɛ}`, `DB|b = {cac, c, abc, d, a}`,
+  `DB|c = {ac, bc, ɛ, ba}` et `DB|d = {ɛ}`.
+- Oui, il faut garder `S5` pour calculer le support de `a`. Pour chercher les
+  extensions de `a`, on ne peut plus prendre en compte `S5` car elle ne
+  contiendra plus d'occurence de `a`.
+- `a -> 1`, `b -> 4`, `c -> 3` et `d -> 1`. Or `support(aa) = 1`,
+  `support(ab) = 4`, `support(ac) = 3` et `support(ad) = 1`. On remarque donc
+  que le nombre de suffixes contenant un item `x` dans `DB|a` est exactement
+  égal à `support(ax)` dans `DB`.
+
+### Étape 2.
+Implémentation faite. Vérification faite.
+
+### Étape 3.
+- `(DB|a)|b = {cac, c, c, d}` et `DB|ab = {cac, c, c, d}`.
+  `(DB|a)|c = {ac, bc, ɛ}` et `DB|ac = {ac, bc, ɛ}`. Cette égalité est vraie
+  grâce au choix du plongement le plus à gauche. En effet, le plongement glouton
+  de `ɑ` possède le plus petit dernier indice possible. Après cette position,
+  chercher le premier `x` revient exactement à chercher le plongement le plus à
+  gauche de `ɑx` dans la séquence initiale.
+- Implémentation faite.
+
+### Étape 4.
+- Implémentation faite.
+- Pour `a` ce sont les séquences `ab` et `ac`. Pour `ab` c'est la séquence `abc`.
+
+### Étape 5.
+- L'ensemble des motifs fréquents se partitionne selon leur premier item car
+  chaque séquence possible commence par l'un des items de l'alphabet.
+- Chaque partie peut être fouillée uniquement à partir de la base projetée
+  correspondante car cette base contient toutes les extensions possibles de la
+  partie en question.
+- Les bases projetées sont plus petites que DB car les séquences qu'elles
+  contiennent sont moins longues que les séquences initiales. De plus le nombre
+  de séquences contenues dans la base projetée peut être plus petite.
