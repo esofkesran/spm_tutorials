@@ -296,3 +296,8 @@ def project(db: list[list[str]], alpha: list[str]) -> list[list[str]]:
         if suffix is not None:
             result.append(suffix)
     return result
+
+
+def project_item(db_proj: list[list[str]], x: str) -> list[list[str]]:
+    """Returns the projected base DB|alpha|x."""
+    return project(db_proj, [x])

@@ -153,6 +153,14 @@ def run_project() -> None:
         print()
 
 
+def run_project_item() -> None:
+    db = [list("abcac"), list("acbc"), list("babc"), list("abd"), list("cba")]
+    db_a = lib.project(db, ["a"])
+
+    print(lib.project_item(db_a, "b"))
+    print(lib.project_item(db_a, "c"))
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -166,4 +174,5 @@ if __name__ == "__main__":
     # run_prefixes()
     # run_suffixes()
     # run_project_seq()
-    run_project()
+    # run_project()
+    run_project_item()
