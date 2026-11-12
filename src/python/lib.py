@@ -301,3 +301,14 @@ def project(db: list[list[str]], alpha: list[str]) -> list[list[str]]:
 def project_item(db_proj: list[list[str]], x: str) -> list[list[str]]:
     """Returns the projected base DB|alpha|x."""
     return project(db_proj, [x])
+
+
+def count_items(db_proj: list[list[str]]) -> dict[str, int]:
+    """Returns the number of suffixes containing each element of the base."""
+    counts = {}
+    for sequence in db_proj:
+        for item in set(sequence):
+            if item not in counts:
+                counts[item] = 0
+            counts[item] += 1
+    return counts
