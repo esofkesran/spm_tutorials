@@ -170,6 +170,35 @@ def run_count_items() -> None:
     print(lib.count_items(db_ab))
 
 
+def run_prefixspan() -> None:
+    db = [list("abcac"), list("acbc"), list("babc"), list("abd"), list("cba")]
+    resultats = lib.prefixspan(db, 2)
+
+    for pattern, support_value in sorted(resultats.items()):
+        print(pattern, support_value)
+
+
+def run_prefixspan_2() -> None:
+    db = [list("abcac"), list("acbc"), list("babc"), list("abd"), list("cba")]
+
+    for minsup in range(1, 5):
+        print(f"Minsup = {minsup}:")
+        resultats = lib.prefixspan(db, minsup)
+        max_pattern_length = 0
+
+        for pattern, support_value in sorted(resultats.items()):
+            print(f"  - {"".join(pattern)} {support_value}")
+
+            current_pattern_length = len(pattern)
+            if current_pattern_length > max_pattern_length:
+                max_pattern_length = current_pattern_length
+
+        print()
+        print(f"  * nombre de motifs : {len(resultats)}")
+        print(f"  * longueur maximale d'un motif : {max_pattern_length}")
+        print()
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -185,4 +214,6 @@ if __name__ == "__main__":
     # run_project_seq()
     # run_project()
     # run_project_item()
-    run_count_items()
+    # run_count_items()
+    # run_prefixspan()
+    run_prefixspan_2()

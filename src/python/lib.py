@@ -312,3 +312,32 @@ def count_items(db_proj: list[list[str]]) -> dict[str, int]:
                 counts[item] = 0
             counts[item] += 1
     return counts
+
+
+def prefixspan(
+        db_proj: list[list[str]],
+        minsup: int,
+        prefix: list[str]|None=None,
+        resultats: dict[tuple[str, ...], int]|None=None
+    ) -> dict[tuple[str, ...], int]:
+    """Applies the PrefixSpan algorithm to a sequence database."""
+    if prefix is None:
+        prefix = []
+    if resultats is None:
+        resultats = {}
+
+    counts = count_items(db_proj)
+
+    for item in sorted(counts):
+        if counts[item] >= minsup:
+            new_prefix = prefix + [item]
+            resultats[tuple(new_prefix)] = counts[item]
+            new_db_proj = project_item(db_proj, item)
+            prefixspan(
+                new_db_proj,
+                minsup,
+                new_prefix,
+                resultats
+            )
+
+    return resultats
