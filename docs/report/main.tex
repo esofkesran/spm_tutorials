@@ -27,7 +27,7 @@
 
 \section*{Espace de recherche}
 \addcontentsline{toc}{section}{Espace de recherche}
-Lors de l'application du DFS, on accorde de l'importance à l'ordre d'apparition des éléments de l'alphabet. C'est pour cette raison que les objets énumérés sont des séquences (l’espace de recherche est un espace de séquences). De plus, on autorise la répétition des éléments, raison pour laquelle le nombre d'objets énumérés est infini et le programme ne termine pas (jusqu'à l'arrêt forcé causé par l'exception $RecursionError$).
+Lors de l'application du DFS, on accorde de l'importance à l'ordre d'apparition des éléments de l'alphabet. C'est pour cette raison que les objets énumérés sont des séquences (l'espace de recherche est un espace de séquences). De plus, on autorise la répétition des éléments, raison pour laquelle le nombre d'objets énumérés est infini et le programme ne termine pas (jusqu'à l'arrêt forcé causé par l'exception $RecursionError$).
 
 \section*{Formule de N(m, d)}
 \addcontentsline{toc}{section}{Formule de N(m, d)}
@@ -37,6 +37,18 @@ $$N_{k} = m^{k}$$
 $$N(m, d) = \sum_{l=1}^{d} m^{l}$$
 
 Ces formules sont confirmées par les résultats expérimentaux comme on peut le voir sur les figures \ref{fig:compter-vs-generer-sequence-count} et \ref{fig:compter-vs-generer-execution-time}.
+
+\section*{Définitions clés}
+\addcontentsline{toc}{section}{Définitions clés}
+Soit $DB$ une base de séquences. Soit $t$ et $s$ des séquences telles que $s \subset DB$. Soit $\alpha$ un préfixe.
+
+\begin{itemize}
+	\item \textbf{Sous-séquence :} Une séquence $t = \langle t_1 \dots t_k \rangle$ est une sous-séquence de $s = \langle s_0 \dots s_{n-1}\rangle$ (noté $t \subseteq s$ s'il existe des indices strictement croissants $i_1 < i_2 < \dots < i_k$ tels que $s_{i_j} = t_j$ pour tout $j$. Les éléments n'ont pas besoin d'être consécutifs.
+	\item \textbf{Plongement :}  Un plongement de $t$ dans $s$ est un tuple d'indices $(i_1, \dots, i_k)$ telque $s_{i_j} = t_j$.
+	\item \textbf{Support :} Le support d'une séquence $t$ dans une base $DB$ est le nombre de séquences de $DB$ qui contiennent $t$ comme sous-séquence. Une séquence compte une seule fois, même si $t$ y a plusieurs plongements.
+	\item \textbf{Préfixe et Suffixe :} Un préfixe de $s$ est formé de ses $k$ premiers éléments ; le suffixe correspondant est formé des éléments restants.
+	\item \textbf{Base projetée :} Pour une sous-séquence $\alpha$ de $s$, on appelle projection de $s$ par rapport à $\alpha$ (notée $s | \alpha$) le suffixe de $s$ qui commence juste après le dernier indice du plongement le plus à gauche de $\alpha$. La base projetée de $DB$ par rapport à un préfixe $\alpha$, notée $DB|\alpha$, est la collection des projections $s | \alpha$ pour toutes les séquences $s$ de $DB$ qui contiennent $\alpha$.
+\end{itemize}
 
 
 \newpage
