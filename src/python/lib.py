@@ -28,7 +28,7 @@ def dfs_naif(seq: list[str], alphabet: list[str]) -> list[list[str]]:
 
 def dfs_borne(
         seq: list[str], alphabet: list[str], d_max: int, depth: int=0,
-        results: list[list[str]]|None=None
+        results: list[list[str]]|None=None, display_results: bool=True
     ) -> list[list[str]]:
     """Generates all possible sequences using DFS with a depth limit.
 
@@ -46,9 +46,11 @@ def dfs_borne(
         return results
     for item in alphabet:
         new_sequence = seq + [item]
-        print("".join(new_sequence) + "\n")
+        if display_results:
+            print("".join(new_sequence) + "\n")
         results.append(new_sequence)
-        dfs_borne(new_sequence, alphabet, d_max, depth + 1, results)
+        dfs_borne(new_sequence, alphabet, d_max, depth + 1, results,
+                  display_results)
     return results
 
 
@@ -341,3 +343,38 @@ def prefixspan(
             )
 
     return resultats
+
+
+def get_alphabet(db: list[list[str]]) -> list[str]:
+    """Returns the alphabet of a sequence database."""
+    all_items = set()
+    for sequence in db:
+        for item in sequence:
+            all_items.add(item)
+    alphabet = sorted(list(all_items))
+    return alphabet
+
+
+def prefixspan_bruteforce_validation(
+        db: list[list[str]],
+        minsup: int,
+        bruteforce_depth: int
+    ) -> dict[str, dict|bool]:
+    """Apply PrefixSpan and brute force, then compare their results."""
+    bruteforce_initial_result = dfs_borne(
+        seq=[], alphabet=get_alphabet(db),
+        d_max=bruteforce_depth, display_results=False
+    )
+    bruteforce_filtered_result = {}
+    for sequence in bruteforce_initial_result:
+        sequence_support = support(sequence, db)
+        if sequence_support >= minsup:
+            bruteforce_filtered_result[tuple(sequence)] = sequence_support
+
+    prefixspan_result = prefixspan(db, minsup)
+
+    return {
+        "bruteforce_result": bruteforce_filtered_result,
+        "prefixspan_result": prefixspan_result,
+        "equals": bruteforce_filtered_result == prefixspan_result
+    }

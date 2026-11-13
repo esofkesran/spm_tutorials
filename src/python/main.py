@@ -199,6 +199,17 @@ def run_prefixspan_2() -> None:
         print()
 
 
+def run_prefixspan_bruteforce_validation() -> None:
+    db = [list("abcac"), list("acbc"), list("babc"), list("abd"), list("cba")]
+    bruteforce_depth = 5
+
+    for minsup in range(1, 5):
+        result = lib.prefixspan_bruteforce_validation(
+            db, minsup, bruteforce_depth
+        )
+        print(f"for minsup = {minsup}: {result["equals"]}")
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -216,4 +227,5 @@ if __name__ == "__main__":
     # run_project_item()
     # run_count_items()
     # run_prefixspan()
-    run_prefixspan_2()
+    # run_prefixspan_2()
+    run_prefixspan_bruteforce_validation()
