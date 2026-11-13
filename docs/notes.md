@@ -150,3 +150,44 @@ Implémentation faite. Vérification faite.
 - Les bases projetées sont plus petites que DB car les séquences qu'elles
   contiennent sont moins longues que les séquences initiales. De plus le nombre
   de séquences contenues dans la base projetée peut être plus petite.
+
+
+# Partie E — Assembler : PrefixSpan, puis comparaison avec SPMF
+
+## E.1 — L’algorithme
+
+### Étape 1.
+Implémentation faite.
+
+### Étape 2.
+Liste complète des motifs pour `minsup = 2` :
+
+- a 5
+- ab 4
+- abc 3
+- ac 3
+- acc 2
+- b 5
+- ba 3
+- bac 2
+- bc 3
+- c 4
+- ca 2
+- cb 2
+- cc 2
+
+* nombre de motifs : 13
+* longueur maximale d'un motif : 3
+
+### Étape 3.
+Programme de vérification écrit. Les résultats concordent.
+
+### Étape 4.
+L'algorithme de PrefixSpan termine pour deux raisons : la limitation de la
+largeur d'exploration et la limitation du profondeur.
+
+- La largeur est limitée car l'alphabet est fini. De plus, à chaque étape, on
+  n'étant la séquence qu'avec les éléments fréquents.
+- La profondeur est limitée car chaque projection réduit la longueur des
+  séquences restantes. La profondeur maximale est donc limitée par la longueur
+  de la plus longue séquence de la base.
