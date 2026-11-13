@@ -50,6 +50,12 @@ Soit $DB$ une base de séquences. Soit $t$ et $s$ des séquences telles que $s \
 	\item \textbf{Base projetée :} Pour une sous-séquence $\alpha$ de $s$, on appelle projection de $s$ par rapport à $\alpha$ (notée $s | \alpha$) le suffixe de $s$ qui commence juste après le dernier indice du plongement le plus à gauche de $\alpha$. La base projetée de $DB$ par rapport à un préfixe $\alpha$, notée $DB|\alpha$, est la collection des projections $s | \alpha$ pour toutes les séquences $s$ de $DB$ qui contiennent $\alpha$.
 \end{itemize}
 
+\section*{Caractéristiques de PrefixSpan}
+\addcontentsline{toc}{section}{Caractéristiques de PrefixSpan}
+L'algorithme de PrefixSpan calcul des motifs fréquents par bases projetées. Ces calculs divisent la base initiale en plusieurs parties. Chaque partie obtenue est de taille plus petite que la base initiale et son étudie peut impliquer de la diviser elle aussi en des parties plus petites. C'est pour cette raison que PrefixSpan applique le principe "diviser pour régner".\\
+
+L'algorithme de PrefixSpan termine pour deux raisons : la limitation de la largeur d'exploration et la limitation du profondeur. La largeur est limitée car l'alphabet est fini. De plus, à chaque étape, on n'étend la séquence qu'avec les éléments fréquents. Quand à la profondeur, sa limitation est dû au fait que chaque projection réduit la longueur des séquences restantes. 
+
 
 \newpage
 
