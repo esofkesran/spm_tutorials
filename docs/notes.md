@@ -191,3 +191,29 @@ largeur d'exploration et la limitation du profondeur.
 - La profondeur est limitée car chaque projection réduit la longueur des
   séquences restantes. La profondeur maximale est donc limitée par la longueur
   de la plus longue séquence de la base.
+
+
+## E.2 — Des données réelles au format SPMF
+
+### Étape 1.
+Documentation lue.
+
+### Étape 2.
+- La base jouet a été créée au format SPMF.
+- SPMF a été lancé sur la base et les résultats correpondent à ceux obtenus avec
+  mon implémentation.
+
+### Étape 3.
+Implémentation faite.
+
+### Étape 4.
+- Jeux de données téléchargés.
+- Statistiques calculées avec une fonction que j'ai implémenté. Voici les
+  résultats obtenus :
+  
+  |dataset   |sequence_count |item_count  |mean_length  |max_length  |
+  |----------|---------------|------------|-------------|------------|
+  |SIGN      |            730|         267|    51.997260|          94|
+  |LEVIATHAN |           5834|        9025|    33.810593|         100|
+- Les résultats correpondent aux informations annoncées par SPMF.
+ 
