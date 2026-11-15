@@ -217,6 +217,21 @@ def run_read_spmf() -> None:
         print(sequence)
 
 
+def run_get_database_stats() -> None:
+    sign_db = lib.read_spmf("data/SIGN.txt")
+    leviathan_db = lib.read_spmf("data/LEVIATHAN.txt")
+
+    sign_stats = lib.get_database_stats(sign_db)
+    leviathan_stats = lib.get_database_stats(leviathan_db)
+
+    result = pd.DataFrame(
+        [sign_stats, leviathan_stats],
+        index=["SIGN", "LEVIATHAN"]
+    )
+
+    print(result)
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -236,4 +251,5 @@ if __name__ == "__main__":
     # run_prefixspan()
     # run_prefixspan_2()
     # run_prefixspan_bruteforce_validation()
-    run_read_spmf()
+    # run_read_spmf()
+    run_get_database_stats()

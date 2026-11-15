@@ -414,3 +414,30 @@ def read_spmf(path: str) -> list[list[int]]:
                     itemset.append(item)
 
     return database
+
+
+def get_database_stats(db: list[list[int]]) -> dict[str, int|float]:
+    """Calculates statistics for a sequence database."""
+    sequence_count = len(db)
+
+    all_items = set()
+    total_length = 0
+    max_length = 0
+
+    for sequence in db:
+        all_items.update(sequence)
+
+        sequence_length = len(sequence)
+        total_length += sequence_length
+
+        if sequence_length > max_length:
+            max_length = sequence_length
+
+    mean_length = total_length / sequence_count
+
+    return {
+        "sequence_count": sequence_count,
+        "item_count": len(all_items),
+        "mean_length": mean_length,
+        "max_length": max_length
+    }
