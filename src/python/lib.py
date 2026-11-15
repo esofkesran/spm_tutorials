@@ -378,3 +378,39 @@ def prefixspan_bruteforce_validation(
         "prefixspan_result": prefixspan_result,
         "equals": bruteforce_filtered_result == prefixspan_result
     }
+
+
+def read_spmf(path: str) -> list[list[int]]:
+    """Extracts sequences from a database in SPMF format."""
+    database = []
+
+    with open(path, encoding="utf-8") as file:
+        for line in file:
+            line = line.strip()
+            if not line or line.startswith(("@", "#", "%")):
+                continue
+
+            sequence = []
+            itemset = []
+
+            for value in line.split():
+                item = int(value)
+
+                if item == -1:
+                    if len(itemset) > 1:
+                        raise ValueError(
+                            "Itemsets with more than one item "
+                            "are not supported."
+                        )
+                    if len(itemset) == 1:
+                        sequence.append(itemset[0])
+                    itemset = []
+
+                elif item == -2:
+                    database.append(sequence)
+                    sequence = []
+
+                else:
+                    itemset.append(item)
+
+    return database

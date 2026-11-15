@@ -210,6 +210,13 @@ def run_prefixspan_bruteforce_validation() -> None:
         print(f"for minsup = {minsup}: {result["equals"]}")
 
 
+def run_read_spmf() -> None:
+    toy_db = lib.read_spmf("data/toy.txt")
+
+    for sequence in toy_db:
+        print(sequence)
+
+
 if __name__ == "__main__":
     # run_dfs_naif()
     # print_longest_sequence_with_dfs_naif()
@@ -228,4 +235,5 @@ if __name__ == "__main__":
     # run_count_items()
     # run_prefixspan()
     # run_prefixspan_2()
-    run_prefixspan_bruteforce_validation()
+    # run_prefixspan_bruteforce_validation()
+    run_read_spmf()
