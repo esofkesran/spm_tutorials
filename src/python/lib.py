@@ -1,4 +1,5 @@
 """Module that contains the implemented algorithms and utility functions."""
+import os
 import time
 from typing import Literal
 
@@ -238,6 +239,7 @@ def show_perf_compter_vs_generer(
     plt.legend()
     plt.grid()
 
+    os.makedirs("outputs", exist_ok=True)
     plt.savefig(f"outputs/compter_vs_generer_{parameter}.png")
     plt.show()
 

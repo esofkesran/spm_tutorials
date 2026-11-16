@@ -1,4 +1,6 @@
 """Main module that executes the implemented functions."""
+import os
+
 import lib
 import pandas as pd
 
@@ -78,6 +80,7 @@ def run_comparison_compter_vs_generer() -> None:
         repetition_count=3
     )
     comparison_df = pd.DataFrame(comparison_list)
+    os.makedirs("outputs", exist_ok=True)
     comparison_df.to_csv(
         "outputs/compter_vs_generer.csv",
         index=False
