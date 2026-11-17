@@ -16,7 +16,7 @@
 	linkcolor=blue,        % Color of internal links (sections, table of contents)
 	urlcolor=cyan,         % Color of Web Links (URLs)
 	citecolor=green,       % Color of bibliographic citations
-	pdftitle={Rapport du TD SPM},
+	pdftitle={SPM Tutorial Report},
 	pdfauthor={AKABASSI J. G. O. W. Samuel}
 }
 \usepackage{float}
@@ -27,60 +27,60 @@
 
 \begin{document}
 
-\section*{Espace de recherche}
-\addcontentsline{toc}{section}{Espace de recherche}
+\section*{Search Space}
+\addcontentsline{toc}{section}{Search Space}
 
-Lors de l'application du DFS, on accorde de l'importance à l'ordre d'apparition des éléments de l'alphabet. C'est pour cette raison que les objets énumérés sont des séquences (l'espace de recherche est un espace de séquences). De plus, on autorise la répétition des éléments, raison pour laquelle le nombre d'objets énumérés est infini et le programme ne termine pas (jusqu'à l'arrêt forcé causé par l'exception $RecursionError$).
-
-
-\section*{Formule de N(m, d)}
-\addcontentsline{toc}{section}{Formule de N(m, d)}
-
-Soit $m$ la longueur de l'alphabet. Soit $d$, $k$ et $l$ des longueurs de séquences. Soit $N_{k}$ le nombre de séquences de longueur égale à $k$. Soit $N(m, d)$, le nombre total de séquences non vides de longueur au plus $d$. Nous avons les formules suivantes : $N_{k} = m^{k}$ ; $N(m, d) = \sum_{l=1}^{d} m^{l}$. Des mesures expérimentales effectuées sur les fonctions $compter$ et $generer$ ont permis de confirmer la validité de ces formules comme on peut le voir sur les figures \ref{fig:compter-vs-generer-sequence-count} et \ref{fig:compter-vs-generer-execution-time}.
+When applying DFS, the order in which the elements of the alphabet appear is significant. For this reason, the enumerated objects are sequences (the search space is a space of sequences). Furthermore, elements may be repeated, which is why the number of enumerated objects is infinite and the program does not terminate (until it is forcibly stopped by a $RecursionError$ exception).
 
 
-\section*{Définitions clés}
-\addcontentsline{toc}{section}{Définitions clés}
+\section*{Formula for N(m, d)}
+\addcontentsline{toc}{section}{Formula for N(m, d)}
 
-Soit $DB$ une base de séquences. Soit $t$ et $s$ des séquences telles que $s \subset DB$. Soit $\alpha$ un préfixe.
+Let $m$ be the length of the alphabet. Let $d$, $k$, and $l$ be sequence lengths. Let $N_{k}$ be the number of sequences of length $k$. Let $N(m, d)$ be the total number of non-empty sequences of length at most $d$. We have the following formulas: $N_{k} = m^{k}$; $N(m, d) = \sum_{l=1}^{d} m^{l}$. Experimental measurements performed on the functions $compter$ and $generer$ confirmed the validity of these formulas, as can be seen in Figures \ref{fig:compter-vs-generer-sequence-count} and \ref{fig:compter-vs-generer-execution-time}.
+
+
+\section*{Key Definitions}
+\addcontentsline{toc}{section}{Key Definitions}
+
+Let $DB$ be a sequence base. Let $t$ and $s$ be sequences such that $s \subset DB$. Let $\alpha$ be a prefix.
 
 \begin{itemize}
-	\item \textbf{Sous-séquence :} Une séquence $t = \langle t_1 \dots t_k \rangle$ est une sous-séquence de $s = \langle s_0 \dots s_{n-1}\rangle$ (noté $t \subseteq s$) s'il existe des indices strictement croissants $i_1 < i_2 < \dots < i_k$ tels que $s_{i_j} = t_j$ pour tout $j$. Les éléments n'ont pas besoin d'être consécutifs.
-	\item \textbf{Plongement :}  Un plongement de $t$ dans $s$ est un tuple d'indices $(i_1, \dots, i_k)$ telque $s_{i_j} = t_j$.
-	\item \textbf{Support :} Le support d'une séquence $t$ dans une base $DB$ est le nombre de séquences de $DB$ qui contiennent $t$ comme sous-séquence. Une séquence compte une seule fois, même si $t$ y a plusieurs plongements.
-	\item \textbf{Préfixe et Suffixe :} Un préfixe de $s$ est formé de ses $k$ premiers éléments ; le suffixe correspondant est formé des éléments restants.
-	\item \textbf{Base projetée :} Pour une sous-séquence $\alpha$ de $s$, on appelle projection de $s$ par rapport à $\alpha$ (notée $s | \alpha$) le suffixe de $s$ qui commence juste après le dernier indice du plongement le plus à gauche de $\alpha$. La base projetée de $DB$ par rapport à un préfixe $\alpha$, notée $DB|\alpha$, est la collection des projections $s | \alpha$ pour toutes les séquences $s$ de $DB$ qui contiennent $\alpha$.
+	\item \textbf{Subsequence:} A sequence $t = \langle t_1 \dots t_k \rangle$ is a subsequence of $s = \langle s_0 \dots s_{n-1}\rangle$ (denoted $t \subseteq s$) if there exist strictly increasing indices $i_1 < i_2 < \dots < i_k$ such that $s_{i_j} = t_j$ for all $j$. The elements do not need to be consecutive.
+	\item \textbf{Embedding:}  An embedding of $t$ into $s$ is a tuple of indices $(i_1, \dots, i_k)$ such that $s_{i_j} = t_j$.
+	\item \textbf{Support:} The support of a sequence $t$ in a base $DB$ is the number of sequences in $DB$ that contain $t$ as a subsequence. A sequence counts only once, even if $t$ has multiple embeddings in it.
+	\item \textbf{Prefix and Suffix:} A prefix of $s$ consists of its first $k$ elements; the corresponding suffix consists of the remaining elements.
+	\item \textbf{Projected base:} For a subsequence $\alpha$ of $s$, the projection of $s$ with respect to $\alpha$ (denoted $s | \alpha$) is the suffix of $s$ that begins immediately after the last index of the leftmost embedding of $\alpha$. The projected base of $DB$ with respect to a prefix $\alpha$, denoted $DB|\alpha$, is the collection of projections $s | \alpha$ for all sequences $s$ in $DB$ that contain $\alpha$.
 \end{itemize}
 
 
-\section*{Caractéristiques de PrefixSpan}
-\addcontentsline{toc}{section}{Caractéristiques de PrefixSpan}
+\section*{PrefixSpan Properties}
+\addcontentsline{toc}{section}{PrefixSpan Properties}
 
-L'algorithme de PrefixSpan calcul des motifs fréquents par bases projetées. Ces calculs divisent la base initiale en plusieurs parties. Chaque partie obtenue est de taille plus petite que la base initiale et son étudie peut impliquer de la diviser elle aussi en des parties plus petites. C'est pour cette raison que PrefixSpan applique le principe "diviser pour régner".\\
+The PrefixSpan algorithm calculates frequent patterns using projected bases. These calculations divide the initial base into several parts. Each resulting part is smaller than the initial base, and analyzing it may require dividing it further into smaller parts. This is why PrefixSpan applies the “divide and conquer” principle.\\
 
-L'algorithme de PrefixSpan termine pour deux raisons : la limitation de la largeur d'exploration et la limitation du profondeur. La largeur est limitée car l'alphabet est fini. De plus, à chaque étape, on n'étend la séquence qu'avec les éléments fréquents. Quand à la profondeur, sa limitation est dû au fait que chaque projection réduit la longueur des séquences restantes.
+The PrefixSpan algorithm terminates for two reasons: the search width limit and the search depth limit. The width is limited because the alphabet is finite. Furthermore, at each step, the sequence is extended only with frequent items. As for the depth, its limitation stems from the fact that each projection reduces the length of the remaining sequences.
 
 
-\section*{Comparaison entre notre implémentation de PrefixSpan et celle de SPMF}
-\addcontentsline{toc}{section}{Comparaison entre notre implémentation de PrefixSpan et celle de SPMF}
+\section*{Comparison between our implementation of PrefixSpan and that of SPMF}
+\addcontentsline{toc}{section}{Comparison between our implementation of PrefixSpan and that of SPMF}
 
-Pour s'assurer que notre implémentation de PrefixSpan est valide, on a comparé ses résultats à ceux de l'implémentation de SPMF. Les résultats ont été comparé grâce à du code Python, et il en ressort que les deux implémentations donnent le même résultats.\\
+To ensure that our implementation of PrefixSpan is valid, we compared its results with those of the SPMF implementation. The results were compared using Python code, and it appears that the two implementations yield the same results.\\
 
-On a également comparé les performances des deux implémentations. Cela a montré que le temps d'exécution de SPMF est nettement inférieur à celui de notre implémentation. Pour évaluer cette différence, on a calculé le facteur d’accélération (SPMF vs notre code) qui varie entre 0,6 et 0,01 (selon le dataset et selon la valeur du support minimum).
+We also compared the performance of the two implementations. This showed that SPMF’s runtime is significantly shorter than that of our implementation. To quantify this difference, we calculated the speedup factor (SPMF vs. our code), which ranges from 0.6 to 0.01 (depending on the dataset and the value of the minimum support). Tables \ref{tab:performance-sign-spmf-code} and \ref{tab:performance-leviathan-spmf-code}, as well as Figures \ref{fig:sign-pattern-count}, \ref{fig:leviathan-pattern-count}, \ref{fig:sign-execution-time}, and \ref{fig:leviathan-execution-time}, present the results of the experimental measurements performed.
 
 
 \newpage
 
 
-\section*{Figures de la comparaison entre les fonctions $compter$ et $generer$}
-\addcontentsline{toc}{section}{Figures de la comparaison entre les fonctions $compter$ et $generer$}
+\section*{Figures comparing the $compter$ and $generer$ functions}
+\addcontentsline{toc}{section}{Figures comparing the $compter$ and $generer$ functions}
 
 \begin{minipage}[c]{0.45\textwidth}
 	\centering
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{images/compter-vs-generer-sequence-count.png}
-		\caption{Comparaison du nombre de séquences générées}
+		\caption{Comparison of the number of sequences generated}
 		\label{fig:compter-vs-generer-sequence-count}
 	\end{figure}
 \end{minipage}
@@ -90,21 +90,21 @@ On a également comparé les performances des deux implémentations. Cela a mont
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{images/compter-vs-generer-execution-time.png}
-		\caption{Comparaison du temps d'exécution (en seconde)}
+		\caption{Comparison of execution time (in seconds)}
 		\label{fig:compter-vs-generer-execution-time}
 	\end{figure}
 \end{minipage}
 
 
-\section*{Figures de la comparaison entre SPMF et notre code}
-\addcontentsline{toc}{section}{Figures de la comparaison entre SPMF et notre code}
+\section*{Figures of the comparison between SPMF and our code}
+\addcontentsline{toc}{section}{Figures of the comparison between SPMF and our code}
 
 \begin{minipage}[c]{0.45\textwidth}
 	\centering
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{images/sign-pattern-count.png}
-		\caption{Nombre de séquences générées sur le dataset SIGN}
+		\caption{Number of sequences generated on the SIGN dataset}
 		\label{fig:sign-pattern-count}
 	\end{figure}
 \end{minipage}
@@ -114,7 +114,7 @@ On a également comparé les performances des deux implémentations. Cela a mont
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{images/leviathan-pattern-count.png}
-		\caption{Nombre de séquences générées sur le dataset LEVIATHAN}
+		\caption{Number of sequences generated on the LEVIATHAN dataset}
 		\label{fig:leviathan-pattern-count}
 	\end{figure}
 \end{minipage}
@@ -124,7 +124,7 @@ On a également comparé les performances des deux implémentations. Cela a mont
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{images/sign-execution-time.png}
-		\caption{Temps d'exécution sur le dataset SIGN}
+		\caption{Execution time on the SIGN dataset}
 		\label{fig:sign-execution-time}
 	\end{figure}
 \end{minipage}
@@ -134,18 +134,18 @@ On a également comparé les performances des deux implémentations. Cela a mont
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{images/leviathan-execution-time.png}
-		\caption{Temps d'exécution sur le dataset LEVIATHAN}
+		\caption{Execution time on LEVIATHAN}
 		\label{fig:leviathan-execution-time}
 	\end{figure}
 \end{minipage}
 
 
-\section*{Tableau des mesures}
-\addcontentsline{toc}{section}{Tableau des mesures}
+\section*{Table of Measurements}
+\addcontentsline{toc}{section}{Table of Measurements}
 
 \begin{table}[H]
 	\centering
-	\caption{Comparaison de performance entre SPMF et notre code pour le dataset SIGN}
+	\caption{Performance comparison between SPMF and our code for the SIGN dataset}
 	\label{tab:performance-sign-spmf-code}
 	\begin{tabular}{|r|r|r|r|r|r|}
 		\hline
@@ -164,7 +164,7 @@ On a également comparé les performances des deux implémentations. Cela a mont
 
 \begin{table}[H]
 	\centering
-	\caption{Comparaison de performance entre SPMF et notre code pour le dataset LEVIATHAN}
+	\caption{Performance comparison between SPMF and our code for the LEVIATHAN dataset}
 	\label{tab:performance-leviathan-spmf-code}
 	\begin{tabular}{|r|r|r|r|r|r|}
 		\hline
@@ -180,25 +180,25 @@ On a également comparé les performances des deux implémentations. Cela a mont
 \end{table}
 
 
-\section*{Caractéristiques de l'ordinateur utilisé pour les mesures}
-\addcontentsline{toc}{section}{Caractéristiques de l'ordinateur utilisé pour les mesures}
+\section*{Specifications of the computer used for the measurements}
+\addcontentsline{toc}{section}{Specifications of the computer used for the measurements}
 
 \begin{itemize}
-	\item \textbf{Processeur :} Intel Core i5-6200U
-	\item \textbf{Taille de la mémoire RAM :} 8 GiB
-	\item \textbf{Système d'exploitation :} Kubuntu 26.04 LTS
+	\item \textbf{Processor:} Intel Core i5-6200U
+	\item \textbf{RAM:} 8 GiB
+	\item \textbf{Operating System:} Kubuntu 26.04 LTS
 \end{itemize}
 
 
-\section*{Références}
-\addcontentsline{toc}{section}{Références}
+\section*{References}
+\addcontentsline{toc}{section}{References}
 
 \begin{itemize}
 	\item J. Pei, J. Han, B. Mortazavi-Asl, H. Pinto, Q. Chen, U. Dayal, M.-C. Hsu, « PrefixSpan: Mining Sequential Patterns Efficiently by Prefix-Projected Pattern Growth », Proceedings of the 17th International Conference on Data Engineering (ICDE), 2001, p. 215–224.
 	\item J. Pei, J. Han, B. Mortazavi-Asl, J. Wang, H. Pinto, Q. Chen, U. Dayal, M.-C. Hsu, « Mining Sequential Patterns by Pattern-Growth: The PrefixSpan Approach », IEEE Transactions on Knowledge and Data Engineering, 16(11), 2004, p. 1424–1440.
 	\item P. Fournier-Viger et al., « SPMF: A Java Open-Source Pattern Mining Library », Journal of Machine Learning Research, 15, 2014, p. 3389–3393. Site : \url{https://www.philippe-fournier-viger.com/spmf/}.
-	\item Documentation SPMF — PrefixSpan : \url{https://www.philippe-fournier-viger.com/spmf/PrefixSpan.php}.
-	\item Jeux de données SPMF : \url{https://www.philippe-fournier-viger.com/spmf/datasets.php}.
+	\item Documentation SPMF — PrefixSpan: \url{https://www.philippe-fournier-viger.com/spmf/PrefixSpan.php}.
+	\item SPMF Datasets: \url{https://www.philippe-fournier-viger.com/spmf/datasets.php}.
 \end{itemize}
 
 \end{document}
