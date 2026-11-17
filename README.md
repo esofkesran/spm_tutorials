@@ -5,7 +5,7 @@ This repository contains the work I completed for the Data Mining (M2) course’
 
 ## Usage
 
-#### Install the dependencies
+### Install the dependencies
 
 Make sure Python 3.14+ is installed on your computer, then install the dependencies with this command:
 
@@ -13,7 +13,7 @@ Make sure Python 3.14+ is installed on your computer, then install the dependenc
 pip install -r requirements.txt
 ```
 
-#### Run most of the implemented functions
+### Run most of the implemented functions
 
 To answer the questions in the tutorial, I implemented several functions that I then ran (with test data) from the `main.py` file. In this file, you can uncomment or comment out the functions you want to test or skip. Then run the file with this command:
 
@@ -21,7 +21,7 @@ To answer the questions in the tutorial, I implemented several functions that I 
 python src/python/main.py
 ```
 
-#### Compare the performance of my PrefixSpan implementation with that of SPMF
+### Compare the performance of my PrefixSpan implementation with that of SPMF
 
 The `perf_comparison.py` file is the script used to compare the performance of the PrefixSpan implementations. To run it, enter the following command:
 
