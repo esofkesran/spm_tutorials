@@ -40,6 +40,7 @@ def dfs_borne(
         d_max: maximum recursion depth
         depth: current recursion depth
         results: a list containing all the generated sequences
+        display_results: whether or not to display the generated sequences
     """
     if results is None:
         results = []
@@ -109,6 +110,7 @@ def get_performance(
         type: Literal["compter", "generer"],
         repetition_count: int=3
     ) -> dict[str, int|float]:
+    """Measures the performance of one of the count or generate functions."""
     total_duration = 0
     result = 0
 
@@ -139,6 +141,7 @@ def performance_compter_vs_generer(
         m_d_values: dict[int, int],
         repetition_count: int=3
     ) -> list[dict[str, int|float]]:
+    """Performs a series of performance comparisons."""
     result = []
 
     for m, max_d in m_d_values.items():
@@ -190,6 +193,7 @@ def show_perf_compter_vs_generer(
         comparison_list: list[dict[str, int|float]]|None=None,
         comparison_csv_path: str|None=None
     ) -> None:
+    """Creates, displays, and saves performance comparison chart."""
     if comparison_list is None and comparison_csv_path is None:
         raise ValueError(
             "At least one of the parameters 'comparison_list' and "
