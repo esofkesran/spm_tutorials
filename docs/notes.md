@@ -216,4 +216,31 @@ Implémentation faite.
   |SIGN      |            730|         267|    51.997260|          94|
   |LEVIATHAN |           5834|        9025|    33.810593|         100|
 - Les résultats correpondent aux informations annoncées par SPMF.
- 
+
+
+## E.3 — Comparaison de performances avec SPMF
+
+### Étape 1.
+Script écrit.
+
+### Étape 2.
+Il faut multiplier le pourcentage par le nombre de transactions, diviser le
+résultats par 100 puis l'arrondir par excès.
+
+### Étape 3.
+Mesures effectuées avec les valeurs :
+- SIGN : 70, 60, 50, 45, 40, 35, 30, 25, 20
+- LEVIATHAN : 30, 20, 15, 10, 7.5, 5, 2.5
+
+### Étape 4.
+Courbes tracées.
+
+### Étape 5.
+- Le facteur d'accélération n'est pas constant. Pour un dataset donné, ce
+  facteur chute au fur et à mesure que le support minimum diminu.
+- La part du temps due au démarrage de la JVM varie en fonction du support
+  minimum. Plus le support minimum chute, plus cette proportion baisse.
+  Généralement, la proportion dépasse les 50%.
+
+### Étape 6.
+...
